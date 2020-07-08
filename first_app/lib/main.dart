@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+import './answers.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -24,8 +27,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     var questions = [
       'What is your favorite colour?',
-      'What is your favorite car?'
-      'What is your favorite food?'
+      'What is your favorite car?',
+      'What is your favorite food?',
     ];
     return MaterialApp(
       home: Scaffold(
@@ -34,15 +37,12 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(
+            Question(
               questions[_questionIndex],
             ),
-            RaisedButton(child: Text('Answer 1'), onPressed: _answerQuestion),
-            RaisedButton(
-              child: Text('Answer 2'),
-              onPressed: _answerQuestion,
-            ),
-            RaisedButton(child: Text('Answer 3'), onPressed: _answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
           ],
         ),
       ),
