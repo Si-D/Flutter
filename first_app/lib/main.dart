@@ -40,6 +40,9 @@ class _MyAppState extends State<MyApp> {
     if(_questionIndex < questions.length){
       print('We have more questions');
     }
+    else{
+      print('No more questions!');
+    }
   }
 
   @override
@@ -50,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My first App'),
         ),
-        body: Column(
+        body: _questionIndex < questions.length ? Column(
           children: [
             Question(
               questions[_questionIndex]['questionText'],
@@ -59,7 +62,7 @@ class _MyAppState extends State<MyApp> {
               return Answer(_answerQuestion, answer);
             }).toList()
           ],
-        ),
+        ) : Center(child: Text('You did it!'),),
       ),
     );
   }
