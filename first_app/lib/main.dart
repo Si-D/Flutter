@@ -37,7 +37,12 @@ class _MyAppState extends State<MyApp> {
     },
     {
       'questionText': 'What is your favorite food?',
-      'answers': [{'text':'Lasagna','score':9},{'text':'Apple','score':5}, {'text':'Avocado','score':5}, {'text':'Spinach','score':10}],
+      'answers': [
+        {'text': 'Lasagna', 'score': 9},
+        {'text': 'Apple', 'score': 5},
+        {'text': 'Avocado', 'score': 5},
+        {'text': 'Spinach', 'score': 10}
+      ],
     }
   ];
   var _questionIndex = 0;
@@ -66,9 +71,9 @@ class _MyAppState extends State<MyApp> {
                   Question(
                     questions[_questionIndex]['questionText'],
                   ),
-                  ...(questions[_questionIndex]['answers'] as List<String>)
+                  ...(questions[_questionIndex]['answers'] as List<Map<String, Object>>)
                       .map((answer) {
-                    return Answer(_answerQuestion, answer);
+                    return Answer(_answerQuestion, answer['text']);
                   }).toList()
                 ],
               )
