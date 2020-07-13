@@ -46,7 +46,11 @@ class _MyAppState extends State<MyApp> {
     }
   ];
   var _questionIndex = 0;
-  void _answerQuestion() {
+  var _totalScore = 0;
+
+  void _answerQuestion(int score) {
+    _totalScore = _totalScore + score;
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -71,14 +75,19 @@ class _MyAppState extends State<MyApp> {
                   Question(
                     questions[_questionIndex]['questionText'],
                   ),
-                  ...(questions[_questionIndex]['answers'] as List<Map<String, Object>>)
+                  ...(questions[_questionIndex]['answers']
+                          as List<Map<String, Object>>)
                       .map((answer) {
-                    return Answer(_answerQuestion, answer['text']);
+                    return Answer(
+                        () => _answerQuestion(answer['score']), answer['text']);
                   }).toList()
                 ],
               )
             : Center(
-                child: Text('You did it!'),
+                child: Text(
+                  'You did it!',
+                  style: TextStyle(fontSize: 30),
+                ),
               ),
       ),
     );
